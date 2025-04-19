@@ -1,24 +1,30 @@
 ---
-import { getCollection } from "astro:content";
-import Main from "@/layouts/Main.astro";
-import Layout from "@/layouts/Layout.astro";
-import Tag from "@/components/Tag.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import getUniqueTags from "@/utils/getUniqueTags";
-import { SITE } from "@/config";
+export const prerender = true
 
-const posts = await getCollection("blog");
+import { getCollection } from 'astro:content';
+import DefaultPageLayout from '$/layouts/default.astro'
 
-let tags = getUniqueTags(posts);
+let title = 'All Tags'
+let description = 'All the tags used so far...'
+
+
+const allPosts = await getCollection('blog');
+const tags = [...new Set([].concat.apply([], allPosts.map(post => post.data.tags)))]
 ---
 
-<Layout title={`Tags | ${SITE.title}`}>
-  <Header />
-  <Main pageTitle="Tags" pageDesc="All the tags used in posts.">
-    <ul>
-      {tags.map(({ tag, tagName }) => <Tag {tag} {tagName} size="lg" />)}
+<DefaultPageLayout content={{ title, description }}>
+    <ul class="tag-list">
+     {tags.map((tag) => (
+        <li><a class="tag" href={`/tags/${tag}`} title={`View posts tagged under "${tag}"`} transition:animate="slide">{tag}</a></li>
+    ))}
     </ul>
-  </Main>
-  <Footer />
-</Layout>
+</DefaultPageLayout>
+
+<style>
+    .tag-list {
+        @apply list-none flex gap-2 flex-wrap
+    }
+    .tag {
+        @apply inline-block text-xl px-4 py-1 rounded-full text-theme-primary bg-theme-dark-primary dark:bg-theme-primary dark:text-theme-dark-primary hover:bg-theme-primary hover:text-theme-dark-primary dark:hover:bg-theme-dark-primary dark:hover:text-theme-primary
+    }
+</style>

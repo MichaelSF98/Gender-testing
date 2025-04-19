@@ -1,22 +1,58 @@
+import type { NavItems } from "./types";
+
+export const NAV_ITEMS: NavItems = {
+	home: {
+		path: "/",
+		title: "home",
+	},
+	blog: {
+		path: "/blog",
+		title: "blog",
+	},
+	tags: {
+		path: "/tags",
+		title: "tags",
+	},
+	media: {
+		path: "/media",
+		title: "media",
+	},
+	about: {
+		path: "/about",
+		title: "about",
+	},
+};
+
 export const SITE = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
-  author: "Sat Naing",
-  profile: "https://satnaing.dev/",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "AstroPaper",
-  ogImage: "astropaper-og.jpg",
-  lightAndDarkMode: true,
-  postPerIndex: 4,
-  postPerPage: 4,
-  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
-  showArchives: true,
-  showBackButton: true, // show back button in post detail
-  editPost: {
-    enabled: true,
-    text: "Suggest Changes",
-    url: "https://github.com/satnaing/astro-paper/edit/main/",
-  },
-  dynamicOgImage: true,
-  lang: "en", // html lang code. Set this empty and default will be "en"
-  timezone: "Asia/Bangkok", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-} as const;
+	// Your site's detail?
+	name: "Ink",
+	title: "Astro - Ink",
+	description: "Crisp, minimal, personal blog theme for Astro",
+	url: "https://astro-ink.vercel.app",
+	githubUrl: "https://github.com/one-aalam/astro-ink",
+	listDrafts: true,
+	image:
+		"https://raw.githubusercontent.com/one-aalam/astro-ink/main/public/astro-banner.png",
+	// YT video channel Id (used in media.astro)
+	ytChannelId: "",
+	// Optional, user/author settings (example)
+	// Author: name
+	author: "", // Example: Fred K. Schott
+	// Author: Twitter handler
+	authorTwitter: "", // Example: FredKSchott
+	// Author: Image external source
+	authorImage: "", // Example: https://pbs.twimg.com/profile_images/1272979356529221632/sxvncugt_400x400.jpg, https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png
+	// Author: Bio
+	authorBio:
+		"Crisp, minimal, personal blog theme for Astro. Crisp, minimal, personal blog theme for Astro. Crisp, minimal, personal blog theme for Astro",
+};
+
+// Ink - Theme configuration
+export const PAGE_SIZE = 8;
+export const USE_POST_IMG_OVERLAY = false;
+export const USE_MEDIA_THUMBNAIL = true;
+
+export const USE_AUTHOR_CARD = true;
+export const USE_SUBSCRIPTION = false; /* works only when USE_AUTHOR_CARD is true */
+
+export const USE_VIEW_STATS = true;
